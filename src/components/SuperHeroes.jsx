@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Button } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 const SuperHeroes = () => {
   const [character, setCharacter] = useState('Batman')
@@ -29,7 +30,6 @@ const SuperHeroes = () => {
         value={character}
         onChange={e => setCharacter(e.target.value)}
       />
-      <h1>Hello</h1>
       <Button color="primary" onClick={() => getSuperHeroes()}>
         Enter
       </Button>
@@ -37,9 +37,12 @@ const SuperHeroes = () => {
         {characterOneData.map(hero => {
           return (
             <div key={hero.id}>
+              <Link className="link-employee" to={`/${hero.id}`}>
+                {hero.name}
+              </Link>
+
               <img src={hero.image.url} />
-              <h1>{hero.name}</h1>
-              <h2>Power stats</h2>
+              <h1>Power stats</h1>
               <h1>Combat: {hero.powerstats.combat}</h1>
               <h1>Power: {hero.powerstats.power}</h1>
               <h1>Durability: {hero.powerstats.durability}</h1>
